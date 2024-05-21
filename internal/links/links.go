@@ -3,8 +3,8 @@ package links
 import (
 	"log"
 
-	database "github.com/openmymai/hackernews/internal/pkg/db/mysql"
 	"github.com/openmymai/hackernews/internal/users"
+	database "github.com/openmymai/hackernews/pkg/db/mysql"
 )
 
 // #1

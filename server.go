@@ -9,7 +9,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/go-chi/chi/v5"
 	"github.com/openmymai/hackernews/graph"
-	database "github.com/openmymai/hackernews/internal/pkg/db/mysql"
+	database "github.com/openmymai/hackernews/pkg/db/mysql"
 )
 
 const defaultPort = "8080"

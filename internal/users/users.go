@@ -2,11 +2,9 @@ package users
 
 import (
 	"database/sql"
-	_ "database/sql"
 	"log"
 
-	_ "github.com/openmymai/hackernews/internal/pkg/db/mysql"
-
+	database "github.com/openmymai/hackernews/pkg/db/mysql"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -17,7 +15,7 @@ type User struct {
 }
 
 func (user *User) Create() {
-	statement, err := database.Db.Prepare("INSERT INTO Users(Username, Password) VALUES(?,?)")
+	statement, err := database.Db.Prepare("INSERT INTO Users(Username,Password) VALUES(?,?)")
 	print(statement)
 	if err != nil {
 		log.Fatal(err)

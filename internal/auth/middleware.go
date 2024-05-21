@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/openmymai/hackernews/internal/internal/users"
-	"github.com/openmymai/hackernews/internal/pkg/jwt"
+	"github.com/openmymai/hackernews/internal/users"
+	"github.com/openmymai/hackernews/pkg/jwt"
 )
 
 var userCtxKey = &contextKey{"user"}
@@ -45,4 +45,9 @@ func Middleware() func(http.Handler) http.Handler {
 			next.ServeHTTP(w, r)
 		})
 	}
+}
+
+func ForContext(ctx context.Context) *users.User {
+	raw, _ := ctx.Value(userCtxKey).(*users.User)
+	return raw
 }
