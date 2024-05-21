@@ -9,6 +9,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/go-chi/chi/v5"
 	"github.com/openmymai/hackernews/graph"
+	"github.com/openmymai/hackernews/internal/auth"
 	database "github.com/openmymai/hackernews/pkg/db/mysql"
 )
 
@@ -22,12 +23,12 @@ func main() {
 
 	router := chi.NewRouter()
 
+	router.Use(auth.Middleware())
+
 	database.InitDB()
-	defer database.CloseDB()
 	database.Migrate()
 
 	server := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
-
 	router.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", server)
 
